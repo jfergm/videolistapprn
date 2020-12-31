@@ -6,7 +6,8 @@ const SocketIOContext = createContext();
 class SocketIOProvider extends Component {
   constructor(props) {
     super(props);
-    this.state = {}
+    this.state = {
+    }
   }
 
   async componentDidMount() {
@@ -16,11 +17,6 @@ class SocketIOProvider extends Component {
       socket
     })
 
-    try {
-      this.state.socket.on('message', message => console.log(message))
-    } catch(e) {
-      console.log(e)
-    }
   }
 
   render() {
