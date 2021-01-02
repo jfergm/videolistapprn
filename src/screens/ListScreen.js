@@ -60,8 +60,7 @@ class ListScreen extends Component {
   render() {
     return(
       <View>
-        <Text>List Screen</Text>
-        <List queue={this.state}></List>
+          <List queue={this.state}></List>
       </View>
     )
   }
