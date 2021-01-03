@@ -1,24 +1,13 @@
 import React from 'react';
 import { FlatList } from 'react-native';
+import { Divider } from 'react-native-elements';
 
 import ListItem from './ListItem';
-
-/*const List = ({ queue }) => {
-  return(
-    <ListBase>
-      {
-        queue.queue.map( (item, index) => {
-          return (<ListItem key={index} item={item} currentIndex={queue.currentIndex} index={index} ended={queue.ended}></ListItem>)
-        })
-      }
-    </ListBase>
-  );
-}*/
 
 const List = ({ queue }) => {
 
   const renderItem = ({ item, index }) => {
-    return <ListItem item={item} currentItem={queue.currentIndex === index}></ListItem>
+    return <ListItem item={item} currentItem={queue.currentIndex === index} index={index}></ListItem>
   }
 
   return(
@@ -26,6 +15,7 @@ const List = ({ queue }) => {
       data={ queue.queue }
       renderItem={ renderItem }
       keyExtractor={ (item, index ) => `${index}` }
+      ItemSeparatorComponent={ () => <Divider style={{ backgroundColor: 'transparent', height: 2 }}/>}
     ></FlatList>  
   )
 }
