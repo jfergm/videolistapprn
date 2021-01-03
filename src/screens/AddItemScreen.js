@@ -1,13 +1,17 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { View, Text, Button, TextInput, Linking } from 'react-native';
+import { View, TouchableOpacity, Linking, Text, StyleSheet } from 'react-native';
 import Clipboard from '@react-native-community/clipboard';
-
+import { Button, Input, Icon } from 'react-native-elements';
+ 
 import { SocketIOContext } from '../context/SocketIOContext';
+import { useTheme } from '@react-navigation/native';
 
 
 const AddItemScreen = ({ navigation }) => {
   const [videoId, setVideoId] = useState('');
   const [socket] = useContext(SocketIOContext);
+  const { colors } = useTheme();
+
 
   useEffect(() => {
     socket.on('link-recieved', msg => {
@@ -38,28 +42,39 @@ const AddItemScreen = ({ navigation }) => {
   }
 
   return(
-    <View>
-      <Text>
-        Add Item Screen
-      </Text>
-      <TextInput
-        style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+    <View style={{flex:1, alignItems:"center", justifyContent:"center"}}>
+      <Input
+        inputStyle={{color: colors.text}}
         value={videoId}
+        disabled
+        rightIcon={
+          <TouchableOpacity onPress={handlePaste}>
+            <Icon type="ionicon" name="clipboard" color={colors.text} />       
+          </TouchableOpacity>
+        }
       />  
-      <Button
-        title="Paste"
-        onPress={handlePaste}
-      />
-      <Button
-        title="Search"
-        onPress={handleSearch}
-      />
-      <Button
-        title="Add"
-        onPress={handleAdd}
-      />
+  <View style={styles.container}>
+     <View style={styles.buttonContainer}>
+      <Button title="Search" containerStyle={{borderRadius: 10}} buttonStyle={{backgroundColor: colors.text}} onPress={handleSearch} />
+    </View>
+    <View style={styles.buttonContainer}>
+      <Button title="Add" containerStyle={{borderRadius: 10}} buttonStyle={{backgroundColor: colors.text}} onPress={handleAdd} />
+    </View>
+  </View>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  buttonContainer: {
+    flex: 1,
+    margin: 10
+  },
+});
 
 export default AddItemScreen;
