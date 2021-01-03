@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Icon } from 'react-native-elements';
 
 import { SocketIOProvider } from './context/SocketIOContext';
 
@@ -16,7 +17,8 @@ const myDarkTheme = {
   colors: {
     ...DarkTheme.colors,
     background: '#303030',
-    card: '#424242'
+    card: '#424242',
+    text: '#f50057'
   },
 }
 
@@ -27,7 +29,7 @@ const App = () => {
       <NavigationContainer theme={ colorScheme === 'dark' ? myDarkTheme : DefaultTheme}>
         <Tab.Navigator
           screenOptions={({ route }) => ({
-            /*tabBarIcon: ({ color }) => {
+            tabBarIcon: ({ color }) => {
               let iconName;
               
               switch(route.name) {
@@ -35,17 +37,16 @@ const App = () => {
                   iconName = 'list';
                   break;
                 case 'AddItem':
-                  iconName = 'add-outline';
+                  iconName = 'add';
                   break;
               }
   
-              // You can return any component that you like here!
-              return <Icon type="Ionicons" name={iconName} color={color} />;
-            },*/
+              return <Icon name={iconName} type='ionicon' color={color} />
+            },
           })}
           tabBarOptions={{
-            activeTintColor: 'tomato',
-            inactiveTintColor: 'gray',
+            activeTintColor: '#f50057',
+            inactiveTintColor: 'white',
           }}
         >
           <Tab.Screen name="List" component={ListScreen} />
