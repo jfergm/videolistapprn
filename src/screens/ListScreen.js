@@ -59,7 +59,7 @@ class ListScreen extends Component {
 
   render() {
     return(
-      <View>
+      <View style={{margin: 10}}>
           <List queue={this.state}></List>
       </View>
     )
