@@ -25,7 +25,7 @@ const ListItem = ({ item, currentItem, index }) => {
       }
       <ListItemElement.Content>
         <TouchableOpacity onPress={handleSelectItem} disabled={currentItem}>
-          <ListItemElement.Title style={{color: colors.text}}>{item.title}</ListItemElement.Title>
+          <ListItemElement.Title style={{color: currentItem ? colors.text : 'white'}}>{item.title}</ListItemElement.Title>
           <ListItemElement.Subtitle style={{color: 'white'}}>{item.duration}</ListItemElement.Subtitle>
         </TouchableOpacity>
       </ListItemElement.Content>
