@@ -7,6 +7,7 @@ import { SocketIOProvider } from './context/SocketIOContext';
 
 import ListScreen from './screens/ListScreen';
 import AddItemScreen from './screens/AddItemScreen';
+import ConfigScreen from './screens/ConfigScreen';
 
 import { Appearance } from 'react-native';
 
@@ -31,16 +32,18 @@ const App = () => {
           screenOptions={({ route }) => ({
             tabBarIcon: ({ color }) => {
               let iconName;
-              
+            
               switch(route.name) {
                 case 'List':
                   iconName = 'list';
                   break;
-                case 'AddItem':
+                case 'Add':
                   iconName = 'add';
                   break;
+                case 'Config':
+                  iconName = 'settings';
+                  break;
               }
-  
               return <Icon name={iconName} type='ionicon' color={color} />
             },
           })}
@@ -50,7 +53,8 @@ const App = () => {
           }}
         >
           <Tab.Screen name="List" component={ListScreen} />
-          <Tab.Screen name="AddItem" component={AddItemScreen} />
+          <Tab.Screen name="Add" component={AddItemScreen} />
+          <Tab.Screen name="Config" component={ConfigScreen} />
         </Tab.Navigator>
       </NavigationContainer>
     </SocketIOProvider>
