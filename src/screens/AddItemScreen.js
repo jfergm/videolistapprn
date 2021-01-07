@@ -53,14 +53,14 @@ const AddItemScreen = ({ navigation }) => {
           </TouchableOpacity>
         }
       />  
-  <View style={styles.container}>
-     <View style={styles.buttonContainer}>
-      <Button title="Search" containerStyle={{borderRadius: 10}} buttonStyle={{backgroundColor: colors.text}} onPress={handleSearch} />
-    </View>
-    <View style={styles.buttonContainer}>
-      <Button title="Add" containerStyle={{borderRadius: 10}} buttonStyle={{backgroundColor: colors.text}} onPress={handleAdd} />
-    </View>
-  </View>
+      <View style={styles.container}>
+        <View style={styles.buttonContainer}>
+          <Button title="Search" containerStyle={{borderRadius: 10}} buttonStyle={{backgroundColor: colors.text}} onPress={handleSearch} />
+        </View>
+        <View style={styles.buttonContainer}>
+          <Button title="Add" containerStyle={{borderRadius: 10}} buttonStyle={{backgroundColor: colors.text}} onPress={handleAdd} />
+        </View>
+      </View>
     </View>
   );
 }
