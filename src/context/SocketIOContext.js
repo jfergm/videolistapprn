@@ -1,9 +1,11 @@
 import React, { createContext, Component } from 'react';
 import { connect } from '../utils/socketio';
+import { ConfigContext } from './ConfigContext';
 
 const SocketIOContext = createContext();
 
 class SocketIOProvider extends Component {
+  static contextType = ConfigContext;
   constructor(props) {
     super(props);
     this.state = {

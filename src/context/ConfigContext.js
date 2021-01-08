@@ -6,9 +6,9 @@ const ConfigProvider = (props) => {
   const [socketIPAddress, setSocketIPAddress] = useState();
   const [adminKey, setAdminKey] = useState();
   
-  const setConfig = ({ ipAddress, admKey }) => {
-    setSocketIPAddress(ipAddress);
-    setAdminKey(admKey);
+  const setConfig = ({ IPAddress, adminKey }) => {
+    setSocketIPAddress(IPAddress);
+    setAdminKey(adminKey);
   };
 
   return(

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {
   Text,
   TouchableOpacity,
@@ -7,9 +7,13 @@ import {
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import {Overlay, Button} from 'react-native-elements';
 import { useTheme } from '@react-navigation/native';
+import { ConfigContext } from '../context/ConfigContext';
+import { set } from 'react-native-reanimated';
 
 const Scan = ( { setScanVisible }) => {
   const {colors} = useTheme();
+  const { setConfig } = useContext(ConfigContext);
+
   const toggleOverlay = ( ) => {
     setScanVisible(false);
   };
@@ -24,7 +28,7 @@ const Scan = ( { setScanVisible }) => {
     const data = e.data;
     try {
       const config = JSON.parse(data);
-      console.log(config.adminKey);
+      setConfig({...config})
     } catch(e) {
 
     }

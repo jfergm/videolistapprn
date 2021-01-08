@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import { Input, Button, Divider } from 'react-native-elements';
 import { useTheme } from '@react-navigation/native';
+
+import { ConfigContext } from '../context/ConfigContext';
 
 import Scan from '../components/Scan';
 
 const ConfigScreen = () => {
   const [visibleScan, setVisibleScan] = useState(false);
   const { colors } = useTheme();
+  const { socketIPAddress, adminKey } = useContext(ConfigContext);
 
   const handleSave = () => {
     console.log("save")
@@ -23,11 +26,13 @@ const ConfigScreen = () => {
         label="Current IP"
         disabled
         inputStyle={{color: colors.text}}
+        value={socketIPAddress}
       />  
       <Input
         disabled
         label="Current Admin Key"
         inputStyle={{color: colors.text}}
+        value={adminKey}
       /> 
       <Divider style={{ height: 50 }}/>
       <Input
