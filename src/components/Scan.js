@@ -36,17 +36,19 @@ const Scan = ( { setScanVisible }) => {
   }
   return(
     <Overlay isVisible={true} onBackdropPress={toggleOverlay}>
-      <View style={{flex:1, alignItems:"center", justifyContent:"center"}}>
-        <QRCodeScanner
-          onRead={onSuccess}
-          bottomContent={
-            <TouchableOpacity>
-              <Text>OK. Got it!</Text>
-            </TouchableOpacity>
-          }
-        />
-      </View>
-      <Button title="Close camera" containerStyle={{borderRadius: 10}} buttonStyle={{backgroundColor: colors.text}} onPress={ () => setScanVisible(false)} />
+      <>
+        <View style={{flex:1, alignItems:"center", justifyContent:"center"}}>
+          <QRCodeScanner
+            onRead={onSuccess}
+            bottomContent={
+              <TouchableOpacity>
+                <Text>OK. Got it!</Text>
+              </TouchableOpacity>
+            }
+          />
+        </View>
+        <Button title="Close camera" containerStyle={{borderRadius: 10}} buttonStyle={{backgroundColor: colors.text}} onPress={ () => setScanVisible(false)} />
+      </>
     </Overlay>
     
   )
