@@ -1,4 +1,5 @@
 import React, { createContext, Component } from 'react';
+import { ThemeConsumer } from 'react-native-elements';
 import { connect } from '../utils/socketio';
 import { ConfigContext } from './ConfigContext';
 
@@ -12,17 +13,34 @@ class SocketIOProvider extends Component {
     }
   }
 
-  async componentDidMount() {
-    let socket = await connect();
+  async connectToServer() {
+    const { socketIPAddress } = this.context;
+    let socket = await connect(socketIPAddress);
     console.log(socket.connected)
     this.setState({
       socket
-    })
+    });
+  }
 
+  async componentDidMount() {
+    const { socketIPAddress } = this.context;
+    if(socketIPAddress) {
+      this.connectToServer();
+    }
+  }
+
+  async componentDidUpdate() {
+    const { socketIPAddress } = this.context
+    if(this.state.socket) {
+      if(!this.state.socket.nsp.contains(socketIPAddress)) {
+        this.connectToServer();
+      }
+    } else {
+      this.connectToServer();
+    }
   }
 
   render() {
-
     if(this.state.socket) {
       return (
         <SocketIOContext.Provider value={[this.state.socket]}>
@@ -30,7 +48,9 @@ class SocketIOProvider extends Component {
         </SocketIOContext.Provider>
       );
     } else {
-      return (<></>)
+      return (
+        <></>
+      );
     }
 
   }
