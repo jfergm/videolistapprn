@@ -37,6 +37,7 @@ const AddItem = () => {
 
   const handleAdd = () => {
     console.log(videoId);
+    if(videoId === '') return;
     socket.emit('send-video-id', videoId);
     setVideoId('')
     navigation.navigate('List');
