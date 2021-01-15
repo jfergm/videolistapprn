@@ -4,14 +4,14 @@ import Clipboard from '@react-native-community/clipboard';
 import { Button, Input, Icon } from 'react-native-elements';
  
 import { SocketIOContext } from '../context/SocketIOContext';
-import { useTheme } from '@react-navigation/native';
+import { useTheme, useNavigation } from '@react-navigation/native';
 
 const AddItem = () => {
 
   const [videoId, setVideoId] = useState('');
   const [socket] = useContext(SocketIOContext);
   const { colors } = useTheme();
-
+  const navigation = useNavigation();
 
   useEffect(() => {
     socket.on('link-recieved', msg => {
@@ -38,7 +38,8 @@ const AddItem = () => {
   const handleAdd = () => {
     console.log(videoId);
     socket.emit('send-video-id', videoId);
-    //navigation.navigate('List');
+    setVideoId('')
+    navigation.navigate('List');
   }
 
   return (
