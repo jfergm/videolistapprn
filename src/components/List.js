@@ -17,7 +17,6 @@ class List extends Component {
   }
 
   renderItem({ item, index }) {
-    console.log("renderitem", this.state, item, index)
     return <ListItem item={item} currentItem={this.state.currentIndex === index} index={index}></ListItem>
   }
 
@@ -26,11 +25,9 @@ class List extends Component {
     const [ socket ] = this.context;
     socket.emit('init-queue');
     socket.on('start-queue', queue => {
-      console.log(queue)
       this.setState({...queue})
     })
     socket.on('queue-changed', data => {
-      console.log("queuechanged", data);
       switch(data.type) {
         case 'addToList':
           this.setState({
