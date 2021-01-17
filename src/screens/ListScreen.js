@@ -13,11 +13,11 @@ class ListScreen extends Component {
 
   render() {
     return(
-      <View style={{margin: 10}}>
-        <SocketIOProvider>
-          <List></List>
-        </SocketIOProvider>
-      </View>
+      <SocketIOProvider>
+        <View style={{margin: 10}}>
+            <List></List>
+        </View>
+      </SocketIOProvider>
     )
   }
 }

@@ -7,11 +7,12 @@ import { SocketIOProvider } from '../context/SocketIOContext';
 
 const AddItemScreen = ({ navigation }) => {
   return(
+  <SocketIOProvider>
     <View style={{flex:1, alignItems:"center", justifyContent:"center"}}>
-      <SocketIOProvider>
         <AddItem />
-      </SocketIOProvider>
     </View>
+  </SocketIOProvider>
+
   );
 }
 
