@@ -12,6 +12,7 @@ import ConfigScreen from './screens/ConfigScreen';
 
 import { Appearance } from 'react-native';
 
+
 const Tab = createBottomTabNavigator();
 
 const myDarkTheme = {
@@ -20,15 +21,31 @@ const myDarkTheme = {
     ...DarkTheme.colors,
     background: '#303030',
     card: '#424242',
-    text: '#f50057'
+    text: '#f50057',
+    textSecondary: 'white',
+    active: '#f50057',
+    inactive: 'white'
   },
+};
+
+const myDefaultTheme = {
+  dark: false,
+  colors: {
+    ...DefaultTheme,
+    card: '#f4f3f3',
+    active: '#f50057',
+    inactive: 'black',
+    text: '#f50057',
+    textSecondary: '#424242'
+  }
 }
 
 const App = () => {
   const colorScheme = Appearance.getColorScheme();
+  const theme = colorScheme === 'dark' ? myDarkTheme : myDefaultTheme;
   return (
     <ConfigProvider>
-        <NavigationContainer theme={ colorScheme === 'dark' ? myDarkTheme : DefaultTheme}>
+        <NavigationContainer theme={theme}>
           <Tab.Navigator
             screenOptions={({ route }) => ({
               tabBarIcon: ({ color }) => {
@@ -49,8 +66,8 @@ const App = () => {
               },
             })}
             tabBarOptions={{
-              activeTintColor: '#f50057',
-              inactiveTintColor: 'white',
+              activeTintColor: theme.colors.active,
+              inactiveTintColor: theme.colors.inactive,
             }}
           >
             <Tab.Screen name="List" component={ListScreen} />

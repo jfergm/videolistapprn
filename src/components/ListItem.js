@@ -21,12 +21,12 @@ const ListItem = ({ item, currentItem, index }) => {
   return(
     <ListItemElement containerStyle={{backgroundColor: colors.card, borderRadius: 10}}>
       {
-        currentItem && <Icon type="ionicon" name="play" color="white" />
+        currentItem && <Icon type="ionicon" name="play" color={colors.textSecondary} />
       }
       <ListItemElement.Content>
         <TouchableOpacity onPress={handleSelectItem} disabled={currentItem}>
-          <ListItemElement.Title style={{color: currentItem ? colors.text : 'white'}}>{item.title || '-'}</ListItemElement.Title>
-          <ListItemElement.Subtitle style={{color: 'white'}}>{item.duration || '-'}</ListItemElement.Subtitle>
+          <ListItemElement.Title style={{color: currentItem ? colors.text : colors.textSecondary}}>{item.title || '-'}</ListItemElement.Title>
+          <ListItemElement.Subtitle style={{color: currentItem ? colors.text : colors.textSecondary}}>{item.duration || '-'}</ListItemElement.Subtitle>
         </TouchableOpacity>
       </ListItemElement.Content>
       
