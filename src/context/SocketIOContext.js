@@ -1,8 +1,10 @@
 import React, { createContext, Component } from 'react';
-import { Text } from 'react-native';
+import { View } from 'react-native';
 import { ThemeConsumer } from 'react-native-elements';
 import { connect } from '../utils/socketio';
 import { ConfigContext } from './ConfigContext';
+
+import NoConnected from '../components/NoConnected';
 
 const SocketIOContext = createContext();
 
@@ -52,9 +54,9 @@ class SocketIOProvider extends Component {
       );
     } else {
       return (
-        <>
-          <Text style={{color: 'white'}}>No connection</Text>
-        </>
+        <View style={{flex:1, alignItems:"center", justifyContent:"center"}}>
+          <NoConnected />
+        </View>
       );
     }
 
