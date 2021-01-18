@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { FlatList } from 'react-native';
-import { Divider } from 'react-native-elements';
+import { FlatList, Text, View, StyleSheet } from 'react-native';
+import { Divider, Button } from 'react-native-elements';
 import { SocketIOContext } from '../context/SocketIOContext';
 
 import ListItem from './ListItem';
@@ -59,15 +59,41 @@ class List extends Component {
   }
 
   render() {
-    return (
-      <FlatList
-        data={ this.state.queue }
-        renderItem={ this.renderItem.bind(this) }
-        keyExtractor={ (item, index ) => `${index}` }
-        ItemSeparatorComponent={ () => <Divider style={{ backgroundColor: 'transparent', height: 2 }}/>}
-      ></FlatList>  
-    )
+    if(this.state.queue.length > 0) {
+      return (
+        <View style={{margin: 10}}>
+          <FlatList
+            data={ this.state.queue }
+            renderItem={ this.renderItem.bind(this) }
+            keyExtractor={ (item, index ) => `${index}` }
+            ItemSeparatorComponent={ () => <Divider style={{ backgroundColor: 'transparent', height: 2 }}/>}
+          ></FlatList>  
+        </View>
+      )
+    } else {
+      return(
+        <View style={{flex: 1,justifyContent: "center", alignItems:"center", direction:"row"}}>
+          <Text style={{color: this.props.colors.textSecondary}}>No items</Text> 
+          <View style={styles.container}>
+            <View style={styles.buttonContainer}>
+              <Button title="add" containerStyle={{borderRadius: 10}} buttonStyle={{backgroundColor: this.props.colors.active}} onPress={() => this.props.navigation.navigate("Add")} />
+            </View>
+          </View>
+        </View>
+      )
+    }
   }
 }
 
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+  },
+  buttonContainer: {
+    flex: 1,
+    margin: 10
+  },
+});
 export default List;
