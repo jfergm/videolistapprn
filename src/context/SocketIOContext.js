@@ -37,7 +37,7 @@ class SocketIOProvider extends Component {
     const { socketIPAddress } = this.context;
     if(this.state.socket && this.state.socketIPAddress !== socketIPAddress) {
      this.state.socket.disconnect();
-     this.this.connectToServer();
+     this.connectToServer();
     } 
 
     if(!this.state.socket) {
