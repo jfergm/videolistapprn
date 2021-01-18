@@ -31,7 +31,7 @@ const myDarkTheme = {
 const myDefaultTheme = {
   dark: false,
   colors: {
-    ...DefaultTheme,
+    ...DefaultTheme.colors,
     card: '#f4f3f3',
     active: '#f50057',
     inactive: 'black',
