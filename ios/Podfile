@@ -18,6 +18,8 @@ target 'AppRN' do
   
   pod 'Permission-Camera', :path => "#{permissions_path}/Camera.podspec"
 
+  pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-async-storage/async-storage'
+
   target 'AppRNTests' do
     inherit! :complete
     # Pods for testing
