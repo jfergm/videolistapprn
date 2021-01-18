@@ -1,10 +1,6 @@
 import React, { createContext, Component } from 'react';
-import { View } from 'react-native';
-import { ThemeConsumer } from 'react-native-elements';
 import { connect } from '../utils/socketio';
 import { ConfigContext } from './ConfigContext';
-
-import NoConnected from '../components/NoConnected';
 
 const SocketIOContext = createContext();
 
@@ -46,20 +42,12 @@ class SocketIOProvider extends Component {
   }
 
   render() {
-    if(this.state.socket) {
+   
       return (
         <SocketIOContext.Provider value={[this.state.socket]}>
           { this.props.children }
         </SocketIOContext.Provider>
       );
-    } else {
-      return (
-        <View style={{flex:1, alignItems:"center", justifyContent:"center"}}>
-          <NoConnected />
-        </View>
-      );
-    }
-
   }
 }
 
