@@ -1,25 +1,18 @@
-import React, { Component } from 'react';
-import { Text, View, Button } from 'react-native';
+import React from 'react';
 
 import { SocketIOProvider } from '../context/SocketIOContext';
 
 import List from '../components/List';
+import { useNavigation, useTheme } from '@react-navigation/native';
 
-class ListScreen extends Component {
-  constructor(props) {
-    super(props);
-
-  }
-
-  render() {
-    return(
-      <SocketIOProvider>
-        <View style={{margin: 10}}>
-            <List></List>
-        </View>
-      </SocketIOProvider>
-    )
-  }
+const ListScreen = () => {
+  const { colors } = useTheme();
+  const navigation = useNavigation();
+  return(
+    <SocketIOProvider>
+      <List colors={colors} navigation={navigation}></List>
+    </SocketIOProvider>
+  )
 }
 
 export default ListScreen;
