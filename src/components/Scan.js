@@ -8,7 +8,6 @@ import QRCodeScanner from 'react-native-qrcode-scanner';
 import {Overlay, Button} from 'react-native-elements';
 import { useTheme } from '@react-navigation/native';
 import { ConfigContext } from '../context/ConfigContext';
-import { set } from 'react-native-reanimated';
 
 const Scan = ( { setScanVisible }) => {
   const {colors} = useTheme();
@@ -28,7 +27,7 @@ const Scan = ( { setScanVisible }) => {
     const data = e.data;
     try {
       const config = JSON.parse(data);
-      setConfig({...config})
+      setConfig({...config}, true)
     } catch(e) {
 
     }
