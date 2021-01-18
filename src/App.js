@@ -45,6 +45,7 @@ const App = () => {
   const theme = colorScheme === 'dark' ? myDarkTheme : myDefaultTheme;
   return (
     <ConfigProvider>
+      <SocketIOProvider>
         <NavigationContainer theme={theme}>
           <Tab.Navigator
             screenOptions={({ route }) => ({
@@ -75,6 +76,7 @@ const App = () => {
             <Tab.Screen name="Config" component={ConfigScreen} />
           </Tab.Navigator>
         </NavigationContainer>
+      </SocketIOProvider>
     </ConfigProvider>
   )
 };
