@@ -4,9 +4,11 @@ import { TouchableOpacity } from 'react-native'
 
 import { useTheme } from '@react-navigation/native';
 import { SocketIOContext } from '../context/SocketIOContext';
+import { ConfigContext } from '../context/ConfigContext';
 
 const ListItem = ({ item, currentItem, index }) => {
   const [ socket ] = useContext(SocketIOContext);
+  const { isAdmin } = useContext(ConfigContext);
   const { colors } = useTheme();
 
   const handleDelete = () => {
@@ -24,17 +26,17 @@ const ListItem = ({ item, currentItem, index }) => {
         currentItem && <Icon type="ionicon" name="play" color={colors.textSecondary} />
       }
       <ListItemElement.Content>
-        <TouchableOpacity onPress={handleSelectItem} disabled={currentItem}>
+        <TouchableOpacity onPress={handleSelectItem} disabled={!isAdmin || (isAdmin && currentItem)}>
           <ListItemElement.Title style={{color: currentItem ? colors.text : colors.textSecondary}}>{item.title || '-'}</ListItemElement.Title>
           <ListItemElement.Subtitle style={{color: currentItem ? colors.text : colors.textSecondary}}>{item.duration || '-'}</ListItemElement.Subtitle>
         </TouchableOpacity>
       </ListItemElement.Content>
       
-      <TouchableOpacity onPress={ handleDelete }>
+      {isAdmin && <TouchableOpacity onPress={ handleDelete }>
         {
           !currentItem &&  <Icon type="ionicon" name="close" color="" />
         }
-      </TouchableOpacity>
+      </TouchableOpacity>}
     </ListItemElement>
   )
 }
