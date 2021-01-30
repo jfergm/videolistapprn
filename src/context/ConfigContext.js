@@ -8,7 +8,8 @@ class ConfigProvider extends Component {
     super(props);
     this.state = {
       socketIPAddress: null,
-      adminKey: null
+      adminKey: null,
+      isAdmin: false
     }
   }
 
@@ -49,7 +50,8 @@ class ConfigProvider extends Component {
       value={{
         socketIPAddress: this.state.socketIPAddress,
         adminKey: this.state.adminKey,
-        setConfig: this.setConfig.bind(this)
+        setConfig: this.setConfig.bind(this),
+        isAdmin: this.state.isAdmin
       }}
     >
       { this.props.children}
