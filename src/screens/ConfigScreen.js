@@ -11,6 +11,7 @@ const ConfigScreen = () => {
   const [visibleScan, setVisibleScan] = useState(false);
   const { colors } = useTheme();
   const { socketIPAddress, adminKey } = useContext(ConfigContext);
+  const [ config, setConfig ] = useState({socketIPAddress: null, adminKey: null})
 
   const handleSave = () => {
     console.log("save")
@@ -38,10 +39,12 @@ const ConfigScreen = () => {
       <Input
         placeholder='IP Address'
         inputStyle={{color: colors.text}}
+        value={config.socketIPAddress}
       />  
        <Input
         placeholder='Admin Key'
         inputStyle={{color: colors.text}}
+        value={config.adminKey}
       /> 
       <View style={styles.container}>
         <View style={styles.buttonContainer}>
