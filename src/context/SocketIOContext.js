@@ -13,13 +13,24 @@ class SocketIOProvider extends Component {
   }
 
   async connectToServer() {
-    const { socketIPAddress } = this.context;
+    const { socketIPAddress, setIsAdmin, adminKey } = this.context;
     let socket = await connect(socketIPAddress);
     console.log(socket.connected)
     this.setState({
       socket,
       socketIPAddress
     });
+
+    socket.emit('check-AdminKey', adminKey)
+
+    socket.on('adminKey-checked', isAdmin => {
+      setIsAdmin(isAdmin);
+    })
+
+    socket.on('adminKey-updated', () => {
+      socket.emit('check-AdminKey', adminKey)
+    });
+    
   }
 
   async componentDidMount() {
