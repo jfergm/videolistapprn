@@ -13,6 +13,12 @@ class ConfigProvider extends Component {
     }
   }
 
+  setIsAdmin(isAdmin) {
+    this.setState({
+      isAdmin
+    });
+  }
+
   async componentDidMount() {
     try {
       const configString = await AsyncStorage.getItem('config');
@@ -24,19 +30,20 @@ class ConfigProvider extends Component {
       console.log(e)
     }
   }
+  
 
   async setConfig({ IPAddress, adminKey }, saveAsyncStorage) {
     this.setState({
       socketIPAddress: IPAddress,
       adminKey
-    })
-
+    });
+    
     if(saveAsyncStorage) {
       try {
         const config = JSON.stringify({
           IPAddress,
           adminKey
-        })
+        });
         await AsyncStorage.setItem('config', config)
       } catch (e) {
         console.log(e)
@@ -51,7 +58,8 @@ class ConfigProvider extends Component {
         socketIPAddress: this.state.socketIPAddress,
         adminKey: this.state.adminKey,
         setConfig: this.setConfig.bind(this),
-        isAdmin: this.state.isAdmin
+        isAdmin: this.state.isAdmin,
+        setIsAdmin: this.setIsAdmin.bind(this)
       }}
     >
       { this.props.children}
